@@ -19,6 +19,32 @@
     <B class="children" :obj="obj" :b="b"/>
     <!-- 组件C -->
     <C class="children" :obj="obj" :b="b"/>
+
+    <!--许言午测试代码-->
+    <el-form ref="form" :model="form" label-width="80px">
+      <el-form-item label="活动名称">
+        <el-input v-model="form.aa"></el-input>
+      </el-form-item>
+      <el-form-item label="活动内容">
+        <el-input v-model="form.bb"></el-input>
+      </el-form-item>
+      <el-form-item label="活动时间">
+        <el-input v-model="form.cc"></el-input>
+      </el-form-item>
+      
+      <el-checkbox  @change="doChange">选择</el-checkbox>
+
+      <el-form-item label="活动名称">
+        <el-input v-model="form.dd" :disabled="isTure"></el-input>
+      </el-form-item>
+      <el-form-item label="活动内容">
+        <el-input v-model="form.ee" :disabled="isTure"></el-input>
+      </el-form-item>
+      <el-form-item label="活动时间">
+        <el-input v-model="form.ff" :disabled="isTure"></el-input>
+      </el-form-item>
+
+    </el-form>
   </div>
 </template>
 
@@ -32,7 +58,16 @@ export default {
         a: 0
       },
       // 为变量时 
-      b: 0
+      b: 0,
+      form: {
+        aa:'',
+        bb:'',
+        cc:'',
+        dd:'',
+        ee:'',
+        ff:''
+      },
+      isTure: false
     };
   },
   methods: {
@@ -49,6 +84,19 @@ export default {
       this.obj.a = 1;
       // 改变某个变量
       this.b = 1
+    },
+    doChange(value){
+      if(value){
+        this.isTure = true
+        this.form.dd = this.form.aa
+        this.form.ee = this.form.bb
+        this.form.ff = this.form.cc
+      }else{
+        this.isTure = false
+        this.form.dd = ''
+        this.form.ee = ''
+        this.form.ff =''
+      }
     }
   },
   components: {
